@@ -1,5 +1,5 @@
 
-# EasyChat
+# QuickChat
 
 A real-time chat application that connects users nationally and internationally, breaking down language barriers with instant messaging and on-the-fly translation.
 
