@@ -47,7 +47,7 @@ To run this project, make sure to add the following environment variables to you
 ![App Screenshot](https://github.com/shubhamjaiswal760/EasyChat/blob/081d5bcdb42482ae03b835e91ca0ebab02ca9534/ss1.png?raw=true)
 
 
-![App Screenshot](https://github.com/shubhamjaiswal760/EasyChat/blob/main/ss2.png?raw=true)
+![App Screenshot](https://github.com/shubhamjaiswal760/music/blob/main/ss2.png?raw=true)
 
 
 ## 💬Feedback
