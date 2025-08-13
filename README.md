@@ -25,6 +25,40 @@ A real-time chat application that connects users nationally and internationally,
 
 ---
 
+
+## 🚀 How to Run / Setup
+
+1. **Clone the repository:**
+	```bash
+	git clone https://github.com/shubhamjaiswal760/EasyChat.git
+	cd EasyChat
+	```
+
+2. **Setup the server:**
+	```bash
+	cd server
+	npm install
+	# Create a .env file and add all required environment variables (see below)
+	npm start
+	```
+
+3. **Setup the client:**
+	Open a new terminal, then:
+	```bash
+	cd client
+	npm install
+	npm run dev
+	```
+
+4. **Access the app:**
+	- Client: http://localhost:5173
+	- Server: http://localhost:5000 (or as specified in your .env)
+
+5. **Environment Variables:**
+	- See the section below for required variables for the server.
+
+---
+
 ## 🔧 Environment Variables
 
 To run this project, make sure to add the following environment variables to your `.env` file:
