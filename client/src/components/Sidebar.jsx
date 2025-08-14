@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useRef } from 'react'
 import assets from '../assets/assets'
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
@@ -12,6 +12,20 @@ const Sidebar = () => {
     const {logout, onlineUsers} = useContext(AuthContext)
 
     const [input, setInput] = useState(false)
+    const [showMenu, setShowMenu] = useState(false)
+    const menuRef = useRef(null);
+    // Close menu when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setShowMenu(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     const navigate = useNavigate();
 
@@ -26,14 +40,21 @@ const Sidebar = () => {
       <div className='pb-5'>
         <div className='flex justify-between items-center'>
             <img src={assets.logo} alt="logo" className='max-w-40' />
-            <div className="relative py-2 group">
-                <img src={assets.menu_icon} alt="Menu" className='max-h-5 cursor-pointer' />
-                <div className='absolute top-full right-0 z-20 w-32 p-5 rounded-md bg-[#282142] border border-gray-600 text-gray-100 hidden group-hover:block'>
-                    <p onClick={()=>navigate('/profile')} className='cursor-pointer text-sm'>Edit Profile</p>
-                    <hr className="my-2 border-t border-gray-500" />
-                    <p onClick={()=> logout()} className='cursor-pointer text-sm'>Logout</p>
-                </div>
-            </div>
+                        <div className="relative py-2 group" ref={menuRef}>
+                                <img
+                                    src={assets.menu_icon}
+                                    alt="Menu"
+                                    className='max-h-5 cursor-pointer'
+                                    onClick={() => setShowMenu((prev) => !prev)}
+                                />
+                                <div
+                                    className={`absolute top-full right-0 z-20 w-32 p-5 rounded-md bg-[#282142] border border-gray-600 text-gray-100 ${showMenu ? 'block' : 'hidden'} group-hover:block`}
+                                >
+                                        <p onClick={()=>{ setShowMenu(false); navigate('/profile'); }} className='cursor-pointer text-sm'>Edit Profile</p>
+                                        <hr className="my-2 border-t border-gray-500" />
+                                        <p onClick={()=>{ setShowMenu(false); logout(); }} className='cursor-pointer text-sm'>Logout</p>
+                                </div>
+                        </div>
         </div>
 
         <div className='bg-[#282142] rounded-full flex items-center gap-2 py-3 px-4 mt-5'>
