@@ -63,7 +63,11 @@ export const translateText = async (text, targetLanguage, sourceLanguage = null)
 export const getSupportedLanguages = async () => {
     try {
         const [languages] = await translate.getLanguages();
-        return languages;
+        // Always add the default option at the top
+        return [
+            { code: 'default', name: 'Default (No Translation)' },
+            ...languages
+        ];
     } catch (error) {
         console.error('Error fetching supported languages:', error);
         // Return common languages as fallback
